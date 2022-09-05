@@ -71,6 +71,405 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vim及gcc" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/05/vim%E5%8F%8Agcc/" class="article-date">
+  <time class="dt-published" datetime="2022-09-05T05:19:04.926Z" itemprop="datePublished">2022-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <hr>
+<hr>
+<p>n:next<br>std:standard:标准<br>h:head:头部<br>include:包含,包括<br>main:主要的,最重要的,入口<br>print:打印<br>format:格式<br>printf&#x3D;print format&#x3D;按照一定的格式进行打印输出<br>return:返回,结束<br>i:input:输入<br>o:output:输出</p>
+<p>回顾：<br>1.计算机组成部分<br>   硬件<br>        三大件<br>    CPU<br>         数据运算和操作外设<br>    内存<br>        暂存数据,速度快,容量小<br>    硬盘<br>        永久性存储数据,速度慢,容量大<br>        外设<br>    可有可无<br>   软件<br>         操作系统<br>             驱动控制外设,分配CPU资源和内存资源等<br>         shell终端程序<br>             接收用户输入的命令并且执行命令<br>         应用程序<br>             QQ等</p>
+<p>2.主流操作系统<br>   windows&#x2F;linux&#x2F;苹果&#x2F;安卓&#x2F;vxworks</p>
+<p>3.linux系统的发展<br>   开源&#x2F;1991&#x2F;linus&#x2F;视频：the code linux&#x2F;<a target="_blank" rel="noopener" href="http://www.kernel.org(官网)/">www.kernel.org(官网)</a></p>
+<p>4.linux系统理念(信仰)：一切皆文件<br>   访问硬件必须先找到对应的文件<br>   访问文件就是在访问硬件本身</p>
+<p>5.linux系统管理文件：文件系统<br>   不同文件系统管理文件方式不一样<br>    明确文件系统中相关概念：目录,文件,路径<br>    根目录’&#x2F;‘&#x2F;子目录&#x2F;父目录&#x2F;当前目录’.’&#x2F;上一级目录’..’&#x2F;主目录’~’<br>    文件：记录了一堆的数据信息<br>    路径：绝对路径（首选）和相对路径 </p>
+<p>6.linux系统命令<br>   pwd&#x2F;clear&#x2F;ls&#x2F;cd&#x2F;mkdir&#x2F;touch&#x2F;rm&#x2F;cp&#x2F;mv&#x2F;echo(&gt;&#x2F;&gt;&gt;)&#x2F;<br>   grep&#x2F;cat&#x2F;find&#x2F;tar&#x2F;whoami(查看当前用户名)	</p>
+<p>详细：<br><strong>mv</strong>： 剪切、移动</p>
+<p>mv  文件名(目录)  目标文件名（目标目录或目标目录下）   重命名……等等功能</p>
+<p><strong>whoami</strong>：查看当前登录linux系统的用户名</p>
+<p>直接写即可</p>
+<p><strong>cat</strong>：快速查看文件内容 </p>
+<p>格式：cat  文件路径</p>
+<p><strong>输出结果</strong></p>
+<p>对于目录：这是一个目录</p>
+<p>对于文件：显示内容（比如txt文件，就把内容显示出来）</p>
+<p><strong>echo</strong>：打印信息</p>
+<p>格式：echo 打印信息</p>
+<p>通常与&gt;&gt;或&gt;联用</p>
+<p>例子：echo 我是人&gt;&#x2F;home&#x2F;ehe&#x2F;hello.txt   把“我是人”打印入hello.txt文件内，清除原有的内容</p>
+<p>​			echo 我是男生&gt;&gt;&#x2F;home&#x2F;ehe&#x2F;hello.txt  把“我是男生”打印入文件，在文件原有内容尾部先回车 ，再打印</p>
+<p><strong>find</strong>：查找文件</p>
+<p>格式：find 路径 -name 文件名             到指定路径下找一个名字叫“文件名”的文件</p>
+<hr>
+<p>7.掌握大名鼎鼎的linux编辑器软件：vim<br>7.1.常用的开发编辑器软件：vim,vscode,sublime等<br>      重点放在vim<br>7.2.vim命令格式：vim  文件名  &#x2F;&#x2F;打开一个文件<br>7.3.vim三种模式：可视模式,编辑模式,命令行模式<br>      可视模式：只能看不能编辑<br>      编辑模式：可以输入各种文本信息<br>      命令行模式：给vim输入各种控制命令<br>7.4.vim三种模式之间的转换：<br>       明确：第一次刚执行vim命令之后,首先进入可视模式<br>       可视模式—–按i键或者o键或者a键—-&gt;编辑模式<br>       编辑模式—–按ESC键—————–&gt;可视模式<br>       可视模式—–按shift+:组合键———&gt;命令行模式<br>       编辑模式—–先按ESC进入可视模式—&gt;按shift+:组合键———&gt;命令行模式<br>7.5.vim命令行模式下相关的命令<br>      w:保存文件<br>      q:不保存并且退出vim<br>      wq:先保存后退出vim<br>      q!:强制直接退出,不保存文件<br>      %s&#x2F;原来内容&#x2F;新内容&#x2F;g:将文件中原来的内容全部替换成新内容<br>      n1,n2s&#x2F;old&#x2F;new&#x2F;g:将文件从n1行到n2行所有的old内容换成new内容<br>          例如：6,9s&#x2F;小&#x2F;大&#x2F;g:将文件的第6行到第9行的小替换成大<br>      !  linux命令,例如：! ls :在vim命令中来执行linux的其他命令,再例如：! cd &#x2F;home&#x2F;tarena<br>      案例：练习vim,打开一个新文件,随意输入各种信息<br>7.6.vim快捷键(前提是先切换到可视模式下,然后再各种快捷键)<br>1)方向键以后不要用上下左右,而是用：h(左)j(下)k(上)l(右)替换<br>2)行选中：shift+v然后按hjkl方向键选中<br>    列选中：ctrl+v然后按hjkl方向键选中<br>3)复制：y键<br>4)粘贴：p键<br>5)剪切：x键<br>6)撤销：u键<br>7)撤销之后由反悔：ctrl+r<br>8)保存退出：ZZ键<br>9)先进入命令行模式执行:sp  文件名,实现上下分屏<br>   先进入命令行模式执行: vs  文件名,实现左右分屏<br>   目的：一个屏幕上可以同时编辑多个文件<br>   屏幕切换快捷键：ctrl+ww<br>10)搜索：先按&#x2F;然后再后面输入要搜索的信息,然后按小n键表示向下搜索,按大N键表示向上搜索<br>11)自动补全：ctrl+n,先输入开头的一个字符或者多个字符,然后按ctrl+n自动补全后面的内容<br>12)自动格式化文本内容,让代码变得整齐划一,好看：先行选中然后按&#x3D;键<br>13)跳转到文件的末尾：G键<br>14)跳转到文件的开头：gg键<br>15)跳转到指定的某个一行：先进入命令行模式,然后输入行号即可,例如：14,跳转到14行</p>
+<h2 id="16-复制某几个单词-字母：先按v键-然后按方向键选中单词-字母-最后按y键复制或者按x剪切-然后按p键粘贴"><a href="#16-复制某几个单词-字母：先按v键-然后按方向键选中单词-字母-最后按y键复制或者按x剪切-然后按p键粘贴" class="headerlink" title="16)复制某几个单词,字母：先按v键,然后按方向键选中单词,字母,最后按y键复制或者按x剪切,然后按p键粘贴  "></a>16)复制某几个单词,字母：先按v键,然后按方向键选中单词,字母,最后按y键复制或者按x剪切,然后按p键粘贴  </h2><p>8.C语言<br>8.1.C语言定义：它是计算机编程的一种语言,除了C语言,还有C++,java,python等<br>            不管是哪种编程语言,他们都是实现人和计算机交流的<br>                           利用C语言能够编写一个程序,让计算机工作,例如：像显示器打印输出一段话<br>            例如：中国人&lt;—–汉语——-&gt;中国人<br>                      中国人&lt;—–汉语&#x2F;英语–&gt;美国人<br>                                      人&lt;———C语言&#x2F;C++语言等—-&gt;计算机</p>
+<p>8.2.C语言发展<br>      C语言之父：丹尼斯里奇<br>      C语言经典书籍:&lt;<the c programming language>&gt;,作者丹尼斯里奇,正式推动了C语言发展<br>      1989,C89标准诞生<br>      1999,C99标准诞生,基于C89引入了一些优秀特性</p>
+<p>8.3.人生的第一个C语言程序,C语言基本编程框架<br>具体实施步骤如下：<br>1)编写C程序<br>      cd &#x2F;home&#x2F;tarena<br>      mkdir stdc<br>      cd stdc<br>      vim  helloworld.c 添加输入以下内容：<br>      &#x2F;*<br>         这是我的第一个程序<br>         好开心啊<br>       *&#x2F;<br>       &#x2F;&#x2F;这是我的第一个程序<br>       &#x2F;&#x2F;好开心<br>      #include &lt;stdio.h&gt;<br>      int main(void)<br>      {<br>    printf(“hello,world\n”);<br>    return 0;<br>      }<br>     保存退出<br>程序说明(C语言编程规矩)：</p>
+<ol>
+<li>C程序的文件分两类：源文件和头文件,他两本质一样<br> 源文件都是以”.c”后缀结尾<br> 头文件都是以”.h”后缀结尾<br> 注意：任何C程序必须有一个源文件,可以不用自己写头文件</li>
+<li>#include &lt;stdio.h&gt;：include在C语言中是一个关键字(有特殊含义功能的一个单词<br> 不可随意使用),如果include前面加#,表示要包含一个头文件<br> stdio.h:就是标准C语言的一个头文件(大神已经帮你写好了)<br> 此文件位于linux系统的&#x2F;usr&#x2F;include&#x2F;目录下<br> 问：这一对&lt;&gt;什么意思呢？<br> 答：如果是&lt;&gt;,表示将来让gcc编译器到&#x2F;usr&#x2F;include目录下找stdio.h头文件<br>    如果是”stdio.h”,表示将来gcc先到当前目录下找stdio.h,如果找不到再           去&#x2F;usr&#x2F;include目录下找<br> 结论：包含头文件的两种写法：<br> #include &lt;stdio.h&gt;<br> #include “stdio.h”<br>3.C程序只能有一个主函数叫main,并且main函数的前面必须是int<br>并且main函数后面要跟一对圆括号,括号里面写void<br>由于main函数是自己编写的,所以还要跟一对{},{}包含的内容就是main函数<br>将来给CPU运行的命令,也就是程序的执行必须从main函数开始<br>然后CPU从main函数依次一条条的向下执行<br>4.printf是一个函数,但是此函数是标准C语言已经写好的(大神写好的),咱们直接使用即可<br>为了使用此函数, 必须包含头文件：stdio.h<br>注意：’\n’表示换行<br>5.main函数中的每条语句必须跟分号来表示此条语句的结束<br>6.main函数最后执行return返回也就是让CPU执行到这程序就结束了<br>7.C程序的注释(代码的解释说明)两种方式：<br> 一对&#x2F;<em>注释的内容</em>&#x2F;：优点：多行注释,缺点：不能嵌套<br> 一对&#x2F;&#x2F;后面跟要注释的内容：优点：可以嵌套,缺点：只能单行注释</li>
+</ol>
+<p>2)编译C程序，执行以下命令：<br>    cd &#x2F;home&#x2F;tarena&#x2F;stdc&#x2F;<br>    gcc helloworld.c &#x2F;&#x2F;编译程序<br>    ls  -lh  &#x2F;&#x2F;查看a.out的详细信息,此a.out就是生成最终二进制可执行程序(计算机能够执行的一个文件)<br>       -rwx….    a.out<br>    .&#x2F;a.out  &#x2F;&#x2F;运行a.out这个程序,将来CPU根据程序的要求做相关的动作</p>
+<p>程序编译说明：<br>1.gcc：它是一个编译器,类似翻译官,将源文件helloworld.c翻译成a.out计算机能够识别<br>            能够看懂的可执行文件<br>   gcc使用命令格式：gcc  源文件 (变态的编译方法),此种写法最终生产的文件都叫a.out<br>   问：如果不想取名叫a.out,怎么办呢？<br>   答：搞清楚gcc工作流程</p>
+<p>8.4.gcc编译器特性<br>1)功能：将源文件翻译成可执行文件<br>2)gcc工作要经过三步骤(目前了解即可)：<br>   1.先预处理<br>      就是将别人的头文件内容全部拷贝到当期源文件中<br>      例如：#include &lt;stdio.h&gt;，意思就是将stdio.h里面的内容全部拷贝到helloworld.c中<br>   2.然后编译<br>      就是将预处理之后的源文件翻译成可执行文件(计算机对此文件是能够识别的)<br>   3.最后链接<br>      就是将别人写好的函数代码,例如printf,加载到自己编写的文件中,最终翻译成CPU<br>      能够执行运行的可执行文件<br>    问：以上三步骤如何分步骤实现呢？<br>    答：只需gcc的相关的选项即可完成<br>3)掌握gcc的常用选项：<br>  -o:  后面跟要生成的文件<br>  -E:进行预处理<br>       例如：gcc -E helloworld.c -o helloworld.i<br>                 语义：对helloworld.c进行预处理,生成预处理以后的文件helloworld.i<br>  -c:只编译不链接,只是把自己的源文件生成可执行文件,此过程不会将别的函数加载过来<br>       例如：gcc -c -o helloworld.o helloworld.i<br>    语义：将预处理文件helloworld.i只编译不链接生成可执行文件helloworld.o<br>                            helloworld.o此文件CPU识别,但是不能运行,因为还没有加载别人的函数</p>
+<p>案例：演练gcc的三种使用方式<br>实施步骤如下：<br>cd &#x2F;home&#x2F;tarena&#x2F;stdc&#x2F;<br>ls  helloworld.c &#x2F;&#x2F;查看文件是否存在<br>第一种编译方式：流氓方法<br>gcc  helloworld.c  &#x2F;&#x2F;生成a.out<br>.&#x2F;a.out</p>
+<p>第二种编译方式：分步骤编译<br>gcc -E -o helloworld.i helloworld.c &#x2F;&#x2F;先预处理<br>vim helloworld.i &#x2F;&#x2F;挑战看看此文件,只看文件的最后的内容(是自己编写的)<br>gcc -c -o helloworld.o helloworld.i &#x2F;&#x2F;然后只编译不链接<br>gcc -o helloworld  helloworld.o &#x2F;&#x2F;最后将helloworld.o进行链接操作生成最终的可执行文			      件helloworld<br>.&#x2F;helloworld</p>
+<p>第三种编译方式：一步到位<br>gcc -o helloworld helloworld.c<br>注意：此方法也就是将方法2进行合并了！</p>
+<p>8.5.详解printf函数<br>1)此函数属于标准C的函数,直接使用即可<br>   但是需要包含头文件stdio.h<br>2)此函数的使用语法格式：<br>   printf(“输出的内容\n”);<br>   例如：<br>   printf(“hello,world\n”); &#x2F;&#x2F;输出hello,world信息之后再加一个换行<br>   printf(“hello,world”); &#x2F;&#x2F;只输出hello,world信息,但是没有换行<br>   printf(“%d, %d\n”, 1, 2); &#x2F;&#x2F;输出1,2<br>   说明：%d:占位符<br>             第一个%d给数字1占位，第二个%d给数字2占位</p>
+<hr>
+<p>9.详解内存特性和概念<br>1)内存功能：用于暂存程序和程序中的各种数据（cpu运算前后）(例如：1,2,3等)<br>   问：为何不用CPU和硬盘呢？<br>   答：CPU存的数太少了<br>          硬盘速度太慢了<br>          所以选择内存<br>          程序玩的不是程序,玩的是内存<br>2)内存相关的概念<br>   字节(俗称格子)：就是将内存划分为一块一块的区域,好比划分为一个一个格子一样<br>                每块区域简称字节,能够存储程序中的数据,也就是内存中最小的<br>                             存储单位就是字节<br>   地址:就是给内存的每个字节指定一个固定的唯一的编号,从0开始,类似给每个房间指定一个房间号一样<br>           此编号简称地址<br>   存储区：就是一个字节或者多个字节组成的存储区域,简称存储区<br>                 问：为何有这个概念呢？<br>    答：比如现在有一个数大小为300亿,明确告诉你一个字节肯定存不下300亿这个数<br>           所以需要4个字节的连续内存来存储300亿这个数,而这个4字节的内存区域构成了<br>                        存储区<br>   首地址：存储区的第一个字节的地址<br>                 内存条<br>                 *  *   *    *    ****   ….<br>                 0 1  2   3    4567 ….<br>         首地址：4                </p>
+<p>​    </p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/05/vim%E5%8F%8Agcc/" data-id="cl7objqio00013c9l1vmsdso6" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-运算符继续" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/05/%E8%BF%90%E7%AE%97%E7%AC%A6%E7%BB%A7%E7%BB%AD/" class="article-date">
+  <time class="dt-published" datetime="2022-09-05T05:19:04.910Z" itemprop="datePublished">2022-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>复习：</p>
+<p>逻辑运算符的短路算法</p>
+<p>1.位运算</p>
+<p>位与：：&amp;</p>
+<p>位或：|</p>
+<p>位异或：^</p>
+<p>位反：~         <strong>注意前面的好多0也要取反</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">~<span class="number">0x5a</span> （一个<span class="type">int</span>下）</span><br><span class="line">:<span class="number">0xffffffa5</span></span><br><span class="line">如果我不想看到那么多f怎么办呢</span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> a=~<span class="number">0x5a</span>;<span class="comment">//将4字节的0xffffffa5保存到变量a中，其他的f全部丢失  这里由于明显除去f的是非负数，所以用unsigned char 就可以</span></span><br></pre></td></tr></table></figure>
+
+<p>2.移位运算符</p>
+<p>a&lt;&lt;b &#x2F;&#x2F;a左移b个位置，右边的空位用0补齐</p>
+<p>a&gt;&gt;b &#x2F;&#x2F;a右移b个位置</p>
+<p><strong>对于无符号类型数字：</strong></p>
+<p>左边空出来的空位用0填充</p>
+<p><strong>对于有符号类型的数字：</strong></p>
+<p>左边空出来的空位<strong>用符号位（</strong>原来数的符号）填充</p>
+<p>左移n位相当于乘以2的n次方，右移类推</p>
+<p><strong>不要用乘除，效率低</strong> </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a=<span class="number">8</span>;</span><br><span class="line">a&lt;&lt;<span class="number">1</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);<span class="comment">//a的值是不改变的，只是拿着a的值的副本去左移右移</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：原本的数可能会出现不能被整除的情况，所以右移后的数不严格等于除以2的n次方的数</strong></p>
+<p>3.移位运算与位运算的结合</p>
+<p><strong>a)位清0操作</strong></p>
+<p><strong>原理</strong>：通过某些特定0位的二进制数如：11111110 （这种只有个别位为0的数）与原来数据进行按位与&amp;操作</p>
+<p>（明确，按位&amp;运算中，真值不影响，假值影响才大）</p>
+<p><strong>连续位清0，其他位保持不</strong></p>
+<p><strong>公式：A &amp;&#x3D;~(B &lt;&lt; C )</strong></p>
+<p><strong>说明：A:操作的数据</strong></p>
+<p>​			<strong>B:连续的位数  ：1&#x2F;3&#x2F;7&#x2F;0xf&#x2F;0x1f&#x2F;0x2f&#x2F;0x3f&#x2F;0xff</strong></p>
+<p>​		1位、2位、3位……</p>
+<p>​        	<strong>C:起始位</strong></p>
+<p>1.将某个数据A的第0位清0，其他位保持不变</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A &amp;=~(1&lt;&lt;0)</span><br></pre></td></tr></table></figure>
+
+<p>2.将某个数据A的第1位清0，其他位保持不变</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A&amp;=~(1&lt;&lt;1);</span><br></pre></td></tr></table></figure>
+
+<p>3.将某个数据的第2位清0，其他位保持不变</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A&amp;=~(1&lt;&lt;2);</span><br></pre></td></tr></table></figure>
+
+<p>4.将某个数据的第0、1位清0，其他位保持不变</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A&amp;=~(3&lt;&lt;0);</span><br></pre></td></tr></table></figure>
+
+<p>5.将某个数据的的1、2位清0，其他位保持不变</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A&amp;=~(3&lt;&lt;1);</span><br></pre></td></tr></table></figure>
+
+<p>6.将某个数据的0、1、2、3位清0，其他位保持不变</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A&amp;=~(0XF&lt;&lt;0); </span><br></pre></td></tr></table></figure>
+
+<p><strong>b)位置1操作：</strong></p>
+<p>原理：通过一个特定位为1的二进制数来与原数据进行按位|运算，实现置1；</p>
+<p>（明确：在按位或运输中，假值不影响，真值才影响）</p>
+<p><strong>连续位置1，其他位保持不变</strong></p>
+<p><strong>公式：A  |&#x3D; (B&lt;&lt;C)</strong>     </p>
+<p><strong>A:要特定位置1的数</strong></p>
+<p><strong>B:连续的位数</strong></p>
+<p><strong>C:连续位数的起始位</strong></p>
+<p>1.将某个数据A的第0位置1，其他位保持不变</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A|=(<span class="number">1</span>&lt;&lt;<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>2.将某个数据A的第1位置1，其他位保持不变</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A|=(<span class="number">1</span>&lt;&lt;<span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>3.将某个数据的第2位置1，其他位保持不变</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A|=(<span class="number">1</span>&lt;&lt;<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<p>4.将某个数据的第0、1位置1，其他位保持不变</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A|=(<span class="number">3</span>&lt;&lt;<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>5.将某个数据的的1、2位置1，其他位保持不变</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A|=(<span class="number">3</span>&lt;&lt;<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>6.将某个数据的0、1、2、3位置1，其他位保持不变</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A|=(<span class="number">0XF</span>&lt;&lt;<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>建议：如果将来操作的位数大于等于<strong>两位</strong>，建议清0后置1</p>
+<p><strong>变换：</strong>以上是用于置0，置1 的，实际上，我们还可以进行一些进阶操作</p>
+<p>如果我们要给一个二进制数的特定连续位设为某些特定值(这种方法要先把这些位清0）</p>
+<p>例如：将数据0xe578a431的第4，5，6，7位置0xa，其他位保持不变</p>
+<p>代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a =<span class="number">0xe578a431</span>;</span><br><span class="line"></span><br><span class="line">a&amp;=~(<span class="number">0xf</span>&lt;&lt;<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">a|=(<span class="number">0xa</span>&lt;&lt;<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<p>4.取地址运算符和解引用运算符：</p>
+<p>1.计算机内存地址都是由32&#x2F;64位二进制数组成，也就是任何地址都是32&#x2F;64位，4&#x2F;8字节</p>
+<p>2.取地址运算符&amp;：获取<strong>一个变量对应的内存首地址</strong>，%p打印</p>
+<p><strong>3.注意：</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,a);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>,*&amp;a);</span><br><span class="line"></span><br><span class="line">a=<span class="number">100</span>;</span><br><span class="line">*&amp;a=<span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+
+<p>两者等价：gcc都翻译为：先获取地址后取内容</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/05/%E8%BF%90%E7%AE%97%E7%AC%A6%E7%BB%A7%E7%BB%AD/" data-id="cl7objqiq00033c9lgfzb1zl4" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-循环" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/05/%E5%BE%AA%E7%8E%AF/" class="article-date">
+  <time class="dt-published" datetime="2022-09-05T05:19:04.894Z" itemprop="datePublished">2022-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>1.{}是否独占一行，由公司的编码规范来定</p>
+<p>比如：linux操作系统程序员规范是不独占一行</p>
+<p>2.switch注意事项</p>
+<p>switch（控制表达式）{</p>
+<p>case 常量表达式：…;</p>
+<p>}</p>
+<p>a)控制表达式被当成一个整数处理（int），可以是字符（本质还是单字节整数），但不能是<strong>浮点数或字符串</strong></p>
+<p>b)常量表达式必须是常量(例如：’a’,5,2+3)，不能是变量，不允许有重复的case分支，分支结构只能是多选一</p>
+<p>c)case分支或者default中如果定义变量，则要加{ }，并且这个变量的作用域只在这个花括号内部</p>
+<p>d)注意break的运用,不管是deafult还是case，后面没跟break的话，都继续向后执行</p>
+<p><strong>swithc…case实现的代码经过gcc编译器翻译的可执行程序代码量比if…else要少，所以switch…case代码执行效率高</strong></p>
+<p>但是switch…case在某些场合使用极其繁琐。而且限制多</p>
+<p>3.循环结构</p>
+<p>for ，while ,do…while</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/05/%E5%BE%AA%E7%8E%AF/" data-id="cl7objqip00023c9lgxcl0v5p" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-继续运算符及流程控制" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/05/%E7%BB%A7%E7%BB%AD%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%8A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" class="article-date">
+  <time class="dt-published" datetime="2022-09-05T05:19:04.863Z" itemprop="datePublished">2022-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>priority:优先级</p>
+<p>回顾：<br>1.公式：</p>
+<p>位清0：A &amp;&#x3D;~(B&lt;&lt;C)</p>
+<p>位置1：A|&#x3D;(B&lt;&lt;C)</p>
+<p>对多位操作时，综合两者使用，可以先将目标位清0，再通过|&#x3D;插入需要的二进制数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a=<span class="number">0xaacc7654</span>;</span><br><span class="line"></span><br><span class="line">a&amp;=~(<span class="number">0xff</span>&lt;&lt;<span class="number">16</span>);</span><br><span class="line"></span><br><span class="line">a|=(<span class="number">0xaa</span>&lt;&lt;<span class="number">16</span>);</span><br></pre></td></tr></table></figure>
+
+<p>以上例子：把cc位变为aa</p>
+<p>今天：</p>
+<p>1.条件运算符</p>
+<p>a?b:c</p>
+<p>2.运算符优先级</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a=(<span class="number">1</span>&gt;<span class="number">2</span>)&amp;&amp;(<span class="number">2</span>&lt;<span class="number">3</span>);<span class="comment">//写括号，提高代码可读性</span></span><br></pre></td></tr></table></figure>
+
+<p>3.数据类型的转换：<strong>隐式转换和强制转换</strong></p>
+<p>3.1隐式转换特点：如果表达式中不同数字的数据类型不同，gcc编译器<strong>自动</strong>先将不同的数据类型转换成<strong>相同的数据类型</strong>之后再做运算</p>
+<p>隐式转换三种情形：</p>
+<p><strong>运算表达式中存在多种数据类型时</strong></p>
+<p>a)gcc会把占内存小的类型转换成占内存大的类型</p>
+<p>例子：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">int a=0;</span><br><span class="line">char b=2;</span><br><span class="line">c=a+b;//gcc编译器自动将b的数据类型转换成int类型，再计算结果给c</span><br></pre></td></tr></table></figure>
+
+<p>b)如果有整型数据类型和浮点数类型，gcc会把整型数据转换为浮点数类型</p>
+<p>c)如果既有有符号数，又有无符号数，gcc编译器会自动将有符号数转换为无符号类型</p>
+<p><strong>d)不推荐使用隐式转换，代码可读性差</strong></p>
+<p>e)<strong>规律：小转大，整转浮，有转无（符号）</strong></p>
+<p>注意：</p>
+<p>1.sizeof(1?1:0.9);&#x2F;&#x2F;结果是8  这里浮点数和整型类型都有，隐式转换，double为8字节</p>
+<p>2.<strong>问题</strong>：这个的结果不该是一个很大的数吗（2^32–7），为什么我的输出都是-4</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,<span class="number">-7</span>+<span class="number">3u</span>);</span><br><span class="line">&#125;</span><br><span class="line">  <span class="number">-7</span>转换成无符号数：<span class="number">2</span>^<span class="number">32</span><span class="number">-7</span></span><br></pre></td></tr></table></figure>
+
+<p>解答：这里的占位符有问题，%d的输出要求把3u转成int了，应该为%u</p>
+<p>3.2强制转换（推荐使用，目的：提高代码可读性）</p>
+<p>a)语法：目标类型变量&#x3D;（目标类型）源类型变量</p>
+<p><strong>例如：char a&#x3D;90;</strong></p>
+<p><strong>int b&#x3D;a;&#x2F;&#x2F;隐式转换</strong></p>
+<p><strong>int b&#x3D;(int)a;&#x2F;&#x2F;强转为int类型</strong></p>
+<p>b)注意：<strong>强转可能会造成数据的丢失</strong></p>
+<p>例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a =<span class="number">300</span>;</span><br><span class="line"><span class="type">char</span> b=(<span class="type">char</span>)<span class="number">300</span>;<span class="comment">//输出b为44</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>为什么：</strong></p>
+<p><strong>300正向溢出了边界，溢出173，由于是正向，从左边界开始结算，所以结果是-128+173&#x3D;45，是从0开始的第45个</strong></p>
+<p><strong>所以是44</strong></p>
+<p>所以：强转数据类型转换都是小转大，或者相等转（意思是这两种可以被允许），隐式转换也遵循此规则，否则也会数据丢失</p>
+<p><strong>c)不管哪种类型转换都不会改变变量本身值</strong></p>
+<h2 id="c语言流程控制"><a href="#c语言流程控制" class="headerlink" title="c语言流程控制"></a>c语言流程控制</h2><p>1.明确：c程序是一个结构化程序，由顺序结构、分支结构、循环结构构建的单入口（main）和单出口的程序（return 0）；</p>
+<p>2.分支结构：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">if</span>（<span class="number">1</span>==a）&#123;<span class="comment">//这样写更好,1在前，避免把相等关系号写成赋值号，因为写成a=1也是能执行的，而写成1=a必然报错</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;a等于1\n&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意：</strong></p>
+<p>gcc编译器默认不链接math库，我们在编译时要手动链接</p>
+<p><strong>分步式：</strong>test.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">gcc -E -o test.i test.c;</span><br><span class="line">gcc -c -o test.o test.i;</span><br><span class="line">gcc -o test test.o -lm;<span class="comment">//这里-l是链接选项</span></span><br><span class="line">                       <span class="comment">// m 是math库</span></span><br></pre></td></tr></table></figure>
+
+<p>懒人式：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc -o test test.c -lm;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/05/%E7%BB%A7%E7%BB%AD%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%8A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" data-id="cl7objqiq00043c9l1qf1g9bf" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-变量及数据类型" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/05/%E5%8F%98%E9%87%8F%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="article-date">
+  <time class="dt-published" datetime="2022-09-05T05:19:04.848Z" itemprop="datePublished">2022-09-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>variable:变量，var<br>char:字符,例如：’a’,’A’等<br>B:Byte:字节,1字节<br>W:Word:字,4字节<br>H:Half：一半<br>HW:HalfWord:半字,2字节<br>DW:DoubleWord:双字，8字节<br>type：类型<br>circle：圆<br>rectangle:矩形<br>ellipse：椭圆<br>radius：半径</p>
+<p>回顾：variable:变量<br>char:字符,例如：’a’,’A’等<br>B:Byte:字节,1字节<br>W:Word:字,4字节<br>H:Half：一半<br>HW:HalfWord:半字,2字节<br>DW:DoubleWord:双字，8字节<br>type：类型<br>circle：圆<br>rectangle:矩形<br>ellipse：椭圆<br>radius：半径</p>
+<p>回顾：<br>1.linux命令<br>   ls&#x2F;cd&#x2F;pwd&#x2F;clear&#x2F;mkdir&#x2F;touch&#x2F;cat&#x2F;echo&#x2F;tar&#x2F;cp&#x2F;mv&#x2F;grep&#x2F;find&#x2F;whoami<br>2.vim编辑器<br>   三种模式,模式切换,快捷键,命令行模式下的命令<br>3.C语言编程基础<br>   源文件.c&#x2F;头文件.h<br>   至少有一个源文件<br>   至少有一个main函数<br>   main函数形式：<br>   int main(void)<br>   {<br>           return 0; &#x2F;&#x2F;结束返回,程序执行到这里结束<br>   }<br>   为了用printf函数需要添加头文件<br>   头文件包含形式两种：#include &lt;stdio.h&gt;&#x2F;#include “stdio.h”<br>   注释形式两种：&#x2F;**&#x2F;,&#x2F;&#x2F;<br>   CPU先找main函数,一旦找到从上往下挨个每条语句执行<br>4.printf函数<br>   功能：向显示器上输入信息<br>   占位符：%d<br>   必须包含：#include &lt;stdio.h&gt;<br>5.C程序编译：必须用gcc编译器(翻译官)<br>   翻译三步骤：预处理&#x2F;编译&#x2F;链接<br>   C程序编译的三种方式：<br>   gcc  xxx.c<br>   gcc -E .c -o .i<br>   gcc -c .i -o .o<br>   gcc -o 目标 .o<br>   gcc -o 目标 .c<br>6.内存特性<br>   研究程序最终研究程序对应的内存(排兵布阵)</p>
+<h2 id="概念：字节-地址-存储区-首地址"><a href="#概念：字节-地址-存储区-首地址" class="headerlink" title="   概念：字节,地址,存储区,首地址"></a>   概念：字节,地址,存储区,首地址</h2><p>7.C语言基础之变量<br>7.1.问：既然程序玩的是内存,那么程序如何从内存分配存储区的空间呢？<br>      答：通过变量来实现内存的分配(类似开房)<br>7.2.变量定义的语法格式：<br>      切记：何为定义？答：定义就是分配内存<br>                何为初始化？答：就是给变量对应的内存空间放一个数字<br>      语法： 数据类型  变量名 &#x3D; 初始值;<br>      注意：目前掌握一个数据类型：int(整型数:0,1,2,3…)，表示分配4字节内存空间<br>              此种数据类型的占位符：%d<br>              例如：printf(“%d\n”, 变量名);<br>      定义变量的形式：<br>      形式1：只定义不初始化<br>      int  var;  语义：定义变量var,本质就是让操作系统给你分配一块内存空间来存储数字<br>                  并且这块内存空间叫var名称,将来访问var名称就是在访问内存空间<br>                  并且这块内存空间的大小连续4字节,并且这4个字节的内存空间<br>                               的数字将来可以随时改变<br>                  注意：此时这块内存空间存储的是一个随机乱七八糟的数字<br>      形式2：定义的同时并且初始化<br>      int var &#x3D; 250; &#x2F;&#x2F;分配4字节内存空间并且同时往里面放一个250数字</p>
+<pre><code>  形式3：定义之后再初始化
+  int var;
+  var = 250;
+
+  形式3：连续只定义多个变量
+  int var1, var2, var3; //定义三个变量var1,var2,var3
+
+  形式4：连续定义并且初始化
+  int var1 = 250, var2 = 251, var3 = 252;
+
+  形式5：连续定义多个变量之后再初始化
+  int var1, var2, var3;
+  var1 = 250;
+  var2 = 251;
+  var3 = 252;
+</code></pre>
+<p>7.3.问：变量名是否可以随意起名？<br>      答：变量名(var)和函数名(printf)在C语言中统称标识符(用来区分,标识的符号)<br>             标识符的名称规则：<br>             1.不能以数字开头,第一个字符只能以字母和下划线开头,后面可以有数字<br>                例如：int 2var; &#x2F;&#x2F;错误<br>             int var2; &#x2F;&#x2F;可以<br>             2.标识符不能用关键字(有特殊功能含义的单词)<br>                目前掌握的关键字如下：include, int, void, main, return<br>                例如：int int; &#x2F;&#x2F;错误<br>             3.要区分大小写<br>                例如：int var 不等于 int Var;<br>             4.采用驼峰或者下划线命名<br>                驼峰：int nAge;<br>             int CreateWindows<br>                linux程序员基本采用下划线命名：int create_windows;<br>7.4.问：写C语言代码书写格式可以任意吗？<br>      答：理论上随意,但是还要讲究美观<br>      1.int main(void) {printf(“hello,world\n”); return 0;} &#x2F;&#x2F;没毛病,太难看了<br>         该加空格的加空格,TAB键的TAB键,对齐,缩进都有讲究,让代码看起来美观<br>         int main(void)<br>         {  &#x2F;&#x2F;独占一行<br>    printf(“….”); &#x2F;&#x2F;一条语句占一行<br>    return 0;	  &#x2F;&#x2F;一条语句占一行<br>         } &#x2F;&#x2F;独占一行<br>      2.代码编写区域建议显示器左侧2&#x2F;3,如果超过了,换行写<br>         printf(“%d %d %d %d %d %d %d %d %d”,<br>            1, 2, 3,4,5,6,7,8,9,10);<br>         printf(“%d %d %d %d %d %d %d”<br>      “%d %d %d %d %d %d %d\n”, </p>
+<pre><code>    1, 2, 3,4,5,6,7,8,9,10);
+</code></pre>
+<hr>
+<p>8.变量的数据类型<br>8.1.数据类型的作用：让编译器gcc预算变量将来要分配的内存大小<br>        不同的数据类型将来分配的内存大小不一样<br>8.2.C语言的基本数据类型：<br>      关键字                	   含义         		    分配内存大小         数字范围<br>      char           	字符类型(本质单字节的整数)       	     1字节	              -128<del>127(背)<br>   unsigned char      无符号单字节整数		     1字节	               0</del>255(背)<br>     short                   双字节整数			     2字节              -32768<del>32767<br>   unsigned short    无符号双字节整数		     2字节              0</del>65535<br>     int                       四字节整数			     4字节	     -2^31 <del>2^31-1<br>   unsigned int        无符号四字节整数		     4字节        0</del>2^32-1<br>     long                    四字节整数			     4字节	     -2^31 <del>2^31-1<br>   unsigned long    无符号四字节整数		     4字节        0</del>2^32-1<br>     long long          八字节整数			     8字节	     -2^63 <del>2^63-1<br>   unsigned long long    无符号八字节整数		     8字节        0</del>2^64-1<br>    float	              单精度浮点数		     4字节        很大<br>    double               双精度浮点数		     8字节        很大</p>
+<p>8.3.有符号和无符号之分<br>1)每种数据类型都有有符号和无符号之分<br>2)有符号数据有正负之分,可以用signed关键字来修饰,也可以不用写<br>    例如：<br>    int var &#x3D; 250;<br>    等价于<br>    signed int var &#x3D; 250;<br>3)无符号数据只有0和正数,必须用unsigned关键字修饰<br>    unsigned int var &#x3D; 250; </p>
+<p>8.4.切记：unsigned int和unsigned long<br>      对于32位&#x2F;64操作系统,unsigned int分配的内存就是4字节<br>      对于32位操作系统,unsigned long分配的内存就是4字节<br>      对于64位操作系统,unsigned long分配的内存就是8字节<br>      结论：如果将来用一个变量来保存内存的某个地址,一定要用unsigned long<br>                后续指针课程再来理解！</p>
+<p>8.5.基本数据类型详解之char(字符)<br>常量：其值不可改变,例如：250<br>1)字符常量用单引号’’括起来,例如:’A’,’a’<br>    区分大小写<br>2)本质：字符类型的变量对应的内存本质上存储的就是字符常量对应的一个整数(数字)而已，<br>              这个数字有对应的专业术语叫<strong>ascii码</strong><br>              说明：字符和整数之间可以互转<br>              例如：<br>          字符      整数<br>          ‘A’         65<br>          ‘B’	  66<br>          ‘a’	  97<br>                       ‘b’	  98<br>          …	  …<br>          所以:’d’-‘a’ &#x3D; 本质就是 100-97&#x3D;3<br>3)字符类型变量的占位符：%c,%d<br>   例如：<br>   char c &#x3D; ‘A’; &#x2F;&#x2F;<strong>表面看</strong>定义字符变量c并且初始化为字符常量’A’<br>           &#x2F;&#x2F;<strong>看清本质</strong>：就是分配1字节内存空间,并且往这个内存空间放了<strong>一个数字65</strong><br>   printf(“c &#x3D; %c\n”, c); &#x2F;&#x2F;打印输出按字符格式输出，c&#x3D;’A’<br>   printf(“c &#x3D; %d\n”, c); &#x2F;&#x2F;打印输出按照整数格式输出,c&#x3D;65</p>
+<p>4)转义字符(特殊字符)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#x27;\n&#x27;:换行符,将光标移动到下一行的行首</span><br><span class="line"> &#x27;\r&#x27;:回车符,将光标移动到当前行的行首</span><br><span class="line"> &#x27;\t&#x27;:TAB键</span><br><span class="line"> &#x27;\\&#x27;:输出一个\</span><br><span class="line"> &#x27; \&#x27;&#x27;:输出一个&#x27;</span><br><span class="line"> &#x27;\&quot;&#x27;:输出一个&quot;</span><br><span class="line"> &#x27;%%&#x27;:输出一个%</span><br><span class="line"> 例如：利用printf要求向屏幕上输出这些信息：</span><br><span class="line"> abc</span><br><span class="line">(TAB键)cbd\&#x27;efg&#x27;\&quot;hjk&quot;\%</span><br><span class="line">答案：printf(&quot;abc\n\tcbd\\\&#x27;efg\&#x27;\\\&quot;hjk\&quot;\\%%\n&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>8.6.基本数据类型详解之整型数据类型(int)<br>1)int特点：<br>   int代表2字节或者4字节整数<br>   可以用short或者long进行修饰,最终得到6大形势,也就是上面表格的内容<br>2)int的六种形式：<br>   1.short (int)用2字节表示,有符号   &#x2F;&#x2F;这里意思是 int可不加<br>      例如：<br>    short  int a &#x3D; 250;<br>    等价于<br>    short a &#x3D; 250;<br>   2.unsigned short (int)用2字节表示,无符号<br>      例如：<br>               unsigned short int a &#x3D; 250;<br>               等价于<br>               unsigned short a &#x3D; 250;<br>  3.long (int)用4字节表示,有符号<br>     例如：long int a &#x3D; 250;<br>               等价于<br>               long a  &#x3D; 250;<br>  4.unsigned long (int)用4字节表示,无符号<br>     例如：unsigned long int a &#x3D; 250;<br>               等价于unsigned long a &#x3D; 250;<br>  5.int用4字节表示,有符号<br>     例如：int a  &#x3D; 250;<br>  6.unsigned int用4字节表示,无符号<br>     例如：unsigned int a &#x3D; 250;</p>
+<p><strong>long long也能修饰int</strong></p>
+<p>long long int   就是long long  </p>
+<p>8.7.整型常数(细腻,高薪)<br>      100：gcc编译器默认当成int类型<br>      100L:gcc编译器当成long类型<br>      100LL:gcc编译器当成long long类型<br>      100u:gcc编译器当成unsigned int类型<br>      100UL：gcc编译器当成unsigned long类型(最爱)<br>      用途：用于后期课程的数据类型的转换用</p>
+<p>8.8.基本数据类型详解之浮点数类型<br>      float&#x2F;double<br>      例如：<br>      1.23:gcc编译器默认当double类型,8字节<br>      1.23f:gcc编译器当float类型,4字节<br>      注意：浮点数在计算机中都是近似值(差不多得了)<br>                例如：1.23实际是1.2300001</p>
+<p>8.9.数据类型和占位符之间的故事<br>      数据类型       	占位符<br>      char             	%c(字符显示)和%hhd(整型数显示)（这个更精确）</p>
+<p> %d 是int 的占位符 ，老师把它和字（word）扯上关系，那64位系统中%d岂不是占八位？？？</p>
+<p><strong>另外：没有%hhhd</strong></p>
+<p>​     unsigned char    %c(字符显示)和%hhd(整型数显示)<br>​     short                   %hd<br>​     unsigned short  %hu<br>​     int 		%d<br>​     unsinged int       %u<br>​     long                     %ld<br>​     unsigned long   %lu<br>​     float	                %f或者%g<br>​     double                %lf或者%lg<br>​		%f,%lf和%g,%lg区别在于前者会保留**后面多余的0,**后者不会保留<br>​     <strong>回滚现象：</strong></p>
+<p><strong>类型的整型数范围（正向超出范围）：</strong></p>
+<p>char为例</p>
+<p>-128~127</p>
+<p>如果要求输出128，则整型数回滚为0；</p>
+<p>类似的其他类型可类推</p>
+<p>类型的数据溢出范围情况（负向超出范围）</p>
+<p>unsigned char为例</p>
+<p>对于unsigned char  0-255是范围</p>
+<p>如果要求输出-1，则实际输出256（unsigned char的实际范围大小）-1  结果为255</p>
+<p><strong>实际上也和正向超出范围类似，-1是负向超出，回滚到右边第一个，也就是255，上面是便捷的计算方法而已</strong></p>
+<p>8.10.掌握sizeof关键字(而不是函数)<br>1)作用：计算一个变量或者一种数据类型所占用的内存空间大小,会给你一个大小结果<br>              单位是字节<br>2)格式：sizeof(变量名或者数据类型名),返回字节数<br>   例如：int a &#x3D; 250;<br>             printf(“sizeof(a)的大小是%d\n”, sizeof(a));<br>             printf(“sizeof(a)的大小是%d\n”, sizeof(int));<br>3)切记：sizeof关键字后面的小括号里对任何存储区内容的修改都是无效的</p>
+<p>8.11.输入函数:scanf<br>1)已经掌握了输出函数：printf<br>2)输入函数scanf功能：能够让用户从键盘给程序输入数字并且保存到变量中(保存到内存中)<br>3)格式：scanf(格式串, 变量的地址列表);<br>   例如：<br>   int a, b;<br>   scanf(“%d%d”, &amp;a, &amp;b); &#x2F;&#x2F;从键盘上输入两个数分别给a和b,按照整型数的形式输入<br>                   &#x2F;&#x2F;键盘输入：100  200<br>   或者：<br>   scanf(“%d,%d”, &amp;a, &amp;b); &#x2F;&#x2F;键盘输入：100,200<br>4)注意<br>   1.为了使用此函数,必须添加头文件:#include &lt;stdio.h&gt;<br>   2.scanf函数双引号里面不要包含占位符以外的其他内容<br>   3.如果一次要输入多个数字,每个数字之间用空格键(帅的人)或者TAB键或者换行键隔开</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/05/%E5%8F%98%E9%87%8F%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-id="cl7objqib00003c9l23q4dyxe" data-title="" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第一篇" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/08/28/%E7%AC%AC%E4%B8%80%E7%AF%87/" class="article-date">
@@ -81,16 +480,25 @@
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/08/28/%E7%AC%AC%E4%B8%80%E7%AF%87/">第一篇</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <hr>
-<h2 id="第一篇"><a href="#第一篇" class="headerlink" title="第一篇"></a>第一篇</h2><p>开心</p>
+        <p>开心</p>
 <p>哈哈哈哈</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/28/%E7%AC%AC%E4%B8%80%E7%AF%87/" data-id="cl7d3i3i40000i49lfvqgampl" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/28/%E7%AC%AC%E4%B8%80%E7%AF%87/" data-id="cl7d3i3i40000i49lfvqgampl" data-title="第一篇" class="article-share-link">Share</a>
       
       
       
@@ -171,7 +579,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li></ul>
     </div>
   </div>
 
@@ -184,11 +592,23 @@
       <ul>
         
           <li>
-            <a href="/2022/08/28/%E7%AC%AC%E4%B8%80%E7%AF%87/">(no title)</a>
+            <a href="/2022/09/05/vim%E5%8F%8Agcc/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2022/08/28/hello-world/">Hello World</a>
+            <a href="/2022/09/05/%E8%BF%90%E7%AE%97%E7%AC%A6%E7%BB%A7%E7%BB%AD/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/05/%E5%BE%AA%E7%8E%AF/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/05/%E7%BB%A7%E7%BB%AD%E8%BF%90%E7%AE%97%E7%AC%A6%E5%8F%8A%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/05/%E5%8F%98%E9%87%8F%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">(no title)</a>
           </li>
         
       </ul>
