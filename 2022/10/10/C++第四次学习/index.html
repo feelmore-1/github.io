@@ -1,0 +1,240 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>C++第四次学习 | 窥见</title><meta name="author" content="小新"><meta name="copyright" content="小新"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="对象的相关知识1.面向对象 2.类与对象 3.对象的生命周期 面向对象面向对象的方法就是将数据与行为结合在一起，共同表达一个对象，通过对象解决问题。 面向对象的特点：①封装性：对象内数据私有化，提供公有属性的接口以访问数据 ②继承：对象可以派生出一个新的对象，有限制的继承原有对象的数据和接口。 ③多态：面向对象的核心，实现同一个接口，不同的实例可以实现不同的操作。 优点：高内聚，低耦合 类与对象类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++第四次学习">
+<meta property="og:url" content="http://www.starlessnight.xyz/2022/10/10/C++%E7%AC%AC%E5%9B%9B%E6%AC%A1%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="窥见">
+<meta property="og:description" content="对象的相关知识1.面向对象 2.类与对象 3.对象的生命周期 面向对象面向对象的方法就是将数据与行为结合在一起，共同表达一个对象，通过对象解决问题。 面向对象的特点：①封装性：对象内数据私有化，提供公有属性的接口以访问数据 ②继承：对象可以派生出一个新的对象，有限制的继承原有对象的数据和接口。 ③多态：面向对象的核心，实现同一个接口，不同的实例可以实现不同的操作。 优点：高内聚，低耦合 类与对象类">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+<meta property="article:published_time" content="2022-10-10T05:21:50.690Z">
+<meta property="article:modified_time" content="2022-10-10T05:21:50.769Z">
+<meta property="article:author" content="小新">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://www.starlessnight.xyz/2022/10/10/C++%E7%AC%AC%E5%9B%9B%E6%AC%A1%E5%AD%A6%E4%B9%A0/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"limitCount":1000,"languages":{"author":"作者: 小新","link":"链接: ","source":"来源: 窥见","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。"}},
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++第四次学习',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-10-10 13:21:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.2.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">窥见</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> 列表</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> 影视</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于笔者</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C++第四次学习</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-10-10T05:21:50.690Z" title="发表于 2022-10-10 13:21:50">2022-10-10</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2022-10-10T05:21:50.769Z" title="更新于 2022-10-10 13:21:50">2022-10-10</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>4分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C++第四次学习"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="对象的相关知识"><a href="#对象的相关知识" class="headerlink" title="对象的相关知识"></a>对象的相关知识</h1><p>1.面向对象</p>
+<p>2.类与对象</p>
+<p>3.对象的生命周期</p>
+<h2 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h2><p>面向对象的方法就是将数据与行为结合在一起，共同表达一个对象，通过对象解决问题。</p>
+<p><strong>面向对象的特点：</strong>①封装性：对象内数据私有化，提供公有属性的接口以访问数据</p>
+<p>②继承：对象可以派生出一个新的对象，有限制的继承原有对象的数据和接口。</p>
+<p>③多态：面向对象的核心，实现同一个接口，不同的实例可以实现不同的操作。</p>
+<p><strong>优点：高内聚，低耦合</strong></p>
+<h2 id="类与对象"><a href="#类与对象" class="headerlink" title="类与对象"></a>类与对象</h2><h3 id="类"><a href="#类" class="headerlink" title="类"></a>类</h3><p>我们都使用过基本数据类型，类就是自定义的数据类型。与C语言的结构体不同，在C++中，这些新的数据类型不仅可以存数据，还可以内置接口，存在访问控制。</p>
+<p><strong>类的定义：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>;<span class="comment">//事先声明可要可不要</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">    <span class="type">int</span> a;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">()</span></span>&#123;<span class="keyword">return</span> <span class="number">0</span>;&#125;;</span><br><span class="line">&#125;;<span class="comment">//定义，要加分号</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>类的访问控制：</strong></p>
+<p>public：类内类外都可以访问</p>
+<p>protected：类内和派生类可以访问</p>
+<p>private：只有类内可以访问</p>
+<p><strong>this指针：</strong></p>
+<p>this指针作用在类内，始终指向实例化的对象。</p>
+<p>与-&gt;运算符连用</p>
+<h3 id="对象"><a href="#对象" class="headerlink" title="对象"></a>对象</h3><p>对象就是实例化的类</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">A a;</span><br><span class="line">a.<span class="built_in">add</span>();<span class="comment">//调用接口</span></span><br><span class="line">a.a=<span class="number">0</span>;<span class="comment">//调用数据成员</span></span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="对象的生命周期"><a href="#对象的生命周期" class="headerlink" title="对象的生命周期"></a>对象的生命周期</h2><h3 id="构造函数"><a href="#构造函数" class="headerlink" title="构造函数"></a>构造函数</h3><p>构造函数在对象创建时调用，用以初始化对象，<strong>没有构造函数创建不了对象。</strong></p>
+<p><font color=red><strong>补充：</strong></font></p>
+<p><strong>没有构造函数创建不了对象。</strong>这句话有失偏颇，这里是一些经验，后面再来总结：</p>
+<p>的确，在使用自定义的构造函数时，如果无法完成初始化任务（初始化哪怕一个数据成员），编译器就会报错，不允许我们运行程序，自然创建不了对象。</p>
+<p>但是，在使用系统默认无参的时候，是可以运行的，并且能够创建对象，下面是细分的几种情形：</p>
+<p>下面各个例子对应这个类：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="type">int</span> a;</span><br><span class="line"><span class="type">char</span> ch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>①</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A a;</span><br></pre></td></tr></table></figure>
+
+<p>使用这种方式可以创建对象，也可以在类外对公有属性的数据成员赋值，但是不能调用为初始化的成员。</p>
+<p>②</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">A <span class="title">a</span><span class="params">()</span></span>;<span class="comment">//无意义</span></span><br></pre></td></tr></table></figure>
+
+<p>③</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A* p=new A;</span><br></pre></td></tr></table></figure>
+
+<p>使用这种方式可以创建对象，甚至可以通过“p-&gt;”的方式访问未初始化的数据成员！</p>
+<p>④</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A* p=<span class="keyword">new</span> <span class="built_in">A</span>();</span><br></pre></td></tr></table></figure>
+
+<p>这种方式更离谱，直接会初始化int,float,double型的数据成员为0，char类型初始化为空格(控制台显示一个为空白字符)</p>
+<p><strong>定义</strong></p>
+<p>1.构造函数名与类名相同</p>
+<p>2.构造函数没有返回值和返回值类型</p>
+<p>3.构造函数可以重载，满足重载条件</p>
+<p><strong>构造函数的创建：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">class A</span><br><span class="line">&#123;</span><br><span class="line">public:</span><br><span class="line">A()&#123;</span><br><span class="line">this-&gt;a=1;</span><br><span class="line">&#125;;</span><br><span class="line">int a=0;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>类必须要有构造函数，而且可以有多个</strong>：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="type">int</span> a=<span class="number">0</span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这里看似没有构造函数，实际上存在一个编译器默认的无参构造，<strong>在程序员没有给出构造函数时自动产生</strong>。</p>
+<p>一旦给出自定义构造函数，编译器便不会参数默认构造，程序员自定义的构造函数得完成初始化任务，不然会报错。</p>
+<p>下面是一些错误例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这里构造函数存在，但是在私有访问控制内，无法被调用，初始化失败，对象无法被创建</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">A</span>()&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;a=<span class="number">0</span>;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="type">int</span> a;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//这里构造函数存在，但是构造函数函数体为空，无法完成初始化任务，同样无法创建</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="type">int</span> a;</span><br><span class="line">    <span class="built_in">A</span>()&#123;&#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<p>不管是选择编译器的默认构造，还是自定义的无参或有参构造。我们创建对象的方式要与我们选择的构造函数对应。</p>
+<p>如：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">A <span class="title">a</span><span class="params">(<span class="number">123</span>)</span></span>;</span><br><span class="line">A a;</span><br><span class="line">A* p=<span class="keyword">new</span> <span class="built_in">A</span>(<span class="number">123</span>);</span><br><span class="line">A* p=<span class="keyword">new</span> A;</span><br></pre></td></tr></table></figure>
+
+<p>以上伪代码展示了创建对象的不同方式，要与构造函数对应。</p>
+<h4 id="成员初始化列表"><a href="#成员初始化列表" class="headerlink" title="成员初始化列表"></a>成员初始化列表</h4><p>当我们使用自定义构造函数但是又不想构造函数体内完成时，我们可以使用成员初始化列表的方式<strong>改造构造函数</strong>来完成：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">A</span>&#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="built_in">A</span>(<span class="type">int</span> val);</span><br><span class="line"><span class="type">int</span> a;</span><br><span class="line"><span class="type">char</span> ch;</span><br><span class="line">string str;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//定义</span></span><br><span class="line">A::<span class="built_in">A</span>(<span class="type">int</span> val):<span class="built_in">a</span>(val),<span class="built_in">ch</span>(<span class="string">&#x27;s&#x27;</span>),<span class="built_in">str</span>(<span class="string">&quot;hello&quot;</span>)<span class="comment">//这里的val是常量，传入</span></span><br><span class="line">&#123;&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>如上，通过运算符  ‘ : ‘  连接成员初始化列表，各成员之间用逗号隔开。</p>
+<p><strong>注意：</strong></p>
+<p>①从概念上说，这些初始化工作早与构造函数括号内的代码</p>
+<p>②这种方法只限于构造函数</p>
+<p>③<font color=red><strong>非静态const数据成员只能用这种方法初始化。</strong></font>正常的构造函数必然在构造函数体内通过this指针来初始化，但是这不可能成功，正常的赋值操作必须是可修改的左值。</p>
+<p>④<font color=red><strong>必须用这种格式来初始化引用数据成员</strong></font></p>
+<p>⑤成员列表必须<strong>包含全部数据成员</strong>，不能遗漏。</p>
+<h3 id="析构函数"><a href="#析构函数" class="headerlink" title="析构函数"></a>析构函数</h3><p>对象在死亡时可能需要一些清理操作，所以析构函数产生了。对象死亡时，会自动调用析构函数。</p>
+<p>析构函数只能有一个，析构函数是在对象死亡时自动调用，<strong>但也可以主动调用析构</strong>（前提是在类外调用得到）。</p>
+<p>注意点：</p>
+<p>①析构函数名与类名一致，在前面加一个~</p>
+<p>②析构函数没有返回值类型和返回值，，也没有参数。</p>
+<p>③如果用户不自定义析构函数，系统会给出一个啥也不干的析构函数。</p>
+<p>问题：<strong>主动调用析构不会释放对象？</strong></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="http://www.starlessnight.xyz">小新</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://www.starlessnight.xyz/2022/10/10/C++%E7%AC%AC%E5%9B%9B%E6%AC%A1%E5%AD%A6%E4%B9%A0/">http://www.starlessnight.xyz/2022/10/10/C++第四次学习/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://www.starlessnight.xyz" target="_blank">窥见</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2022/10/10/C++-%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AD%A6%E4%B9%A0/"><img class="next-cover" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">C++  第三次学习</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://i.loli.net/2021/02/24/5O1day2nriDzjSu.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">小新</div><div class="author-info__description">发现未知是生活最大的魅力</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">0</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/feelmore-1"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86"><span class="toc-number">1.</span> <span class="toc-text">对象的相关知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.1.</span> <span class="toc-text">面向对象</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.</span> <span class="toc-text">类与对象</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB"><span class="toc-number">1.2.1.</span> <span class="toc-text">类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1"><span class="toc-number">1.2.2.</span> <span class="toc-text">对象</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-number">1.3.</span> <span class="toc-text">对象的生命周期</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">构造函数</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%88%90%E5%91%98%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">成员初始化列表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="toc-number">1.3.2.</span> <span class="toc-text">析构函数</span></a></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2022/10/10/C++%E7%AC%AC%E5%9B%9B%E6%AC%A1%E5%AD%A6%E4%B9%A0/" title="C++第四次学习"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++第四次学习"/></a><div class="content"><a class="title" href="/2022/10/10/C++%E7%AC%AC%E5%9B%9B%E6%AC%A1%E5%AD%A6%E4%B9%A0/" title="C++第四次学习">C++第四次学习</a><time datetime="2022-10-10T05:21:50.690Z" title="发表于 2022-10-10 13:21:50">2022-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/10/C++-%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AD%A6%E4%B9%A0/" title="C++  第三次学习"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++  第三次学习"/></a><div class="content"><a class="title" href="/2022/10/10/C++-%E7%AC%AC%E4%B8%89%E6%AC%A1%E5%AD%A6%E4%B9%A0/" title="C++  第三次学习">C++  第三次学习</a><time datetime="2022-10-10T03:18:15.944Z" title="发表于 2022-10-10 11:18:15">2022-10-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/09/C++-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%AD%A6%E4%B9%A0-bool/" title="C++ 第二次学习 bool..."><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++ 第二次学习 bool..."/></a><div class="content"><a class="title" href="/2022/10/09/C++-%E7%AC%AC%E4%BA%8C%E6%AC%A1%E5%AD%A6%E4%B9%A0-bool/" title="C++ 第二次学习 bool...">C++ 第二次学习 bool...</a><time datetime="2022-10-09T04:46:44.406Z" title="发表于 2022-10-09 12:46:44">2022-10-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/10/08/%E6%B7%B7%E6%B7%86%E7%82%B9%EF%BC%9A%E6%A0%88%E3%80%81%E5%A0%86%E3%80%81%E7%BC%93%E5%AD%98%E3%80%81%E7%BC%93%E5%86%B2%E5%8C%BA%E3%80%81%E5%86%85%E5%AD%98%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%AE%83%E4%BB%AC%E4%B8%8E%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%9A%84%E5%85%B3%E7%B3%BB/" title="混淆点：栈、堆"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="混淆点：栈、堆"/></a><div class="content"><a class="title" href="/2022/10/08/%E6%B7%B7%E6%B7%86%E7%82%B9%EF%BC%9A%E6%A0%88%E3%80%81%E5%A0%86%E3%80%81%E7%BC%93%E5%AD%98%E3%80%81%E7%BC%93%E5%86%B2%E5%8C%BA%E3%80%81%E5%86%85%E5%AD%98%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%AE%83%E4%BB%AC%E4%B8%8E%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E7%9A%84%E5%85%B3%E7%B3%BB/" title="混淆点：栈、堆">混淆点：栈、堆</a><time datetime="2022-10-08T04:32:31.366Z" title="发表于 2022-10-08 12:32:31">2022-10-08</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2022/09/05/vim%E5%8F%8Agcc/" title="vim及gcc"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="vim及gcc"/></a><div class="content"><a class="title" href="/2022/09/05/vim%E5%8F%8Agcc/" title="vim及gcc">vim及gcc</a><time datetime="2022-09-05T05:19:04.926Z" title="发表于 2022-09-05 13:19:04">2022-09-05</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By 小新</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">赣ICP备2022007947</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"></div><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = true;
+POWERMODE.mobile = false;
+document.body.addEventListener('input', POWERMODE);
+</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/metingjs/dist/Meting.min.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
